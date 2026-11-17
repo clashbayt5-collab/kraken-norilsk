@@ -184,6 +184,18 @@ h3 { font-size: 1.25rem; }
 .p-card__back blockquote small { display: block; margin-top: 6px; color: var(--accent); font-size: .78rem; }
 .p-wrap.is-highlight .p-card__face { box-shadow: 0 0 0 3px var(--accent), var(--shadow-lg); }
 
+/* ---------- вкладки меню ---------- */
+.menu-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: -14px 0 30px; }
+.menu-tab { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; border: 2px solid var(--line-strong); background: transparent; color: var(--ink); font-weight: 800; font-size: 1rem; transition: background-color .2s, border-color .2s, color .2s, transform .15s; }
+.menu-tab:hover { border-color: var(--accent); }
+.menu-tab:active { transform: translateY(1px); }
+.menu-tab small { opacity: .7; font-weight: 700; }
+.menu-tab[aria-selected="true"] { background: var(--hot); border-color: var(--hot); color: var(--on-hot); box-shadow: 0 4px 0 var(--hot-dark); }
+.panel-in { animation: hintIn .45s ease both; }
+.price-slogan { font-family: var(--font-head); font-size: clamp(1.3rem, 2.6vw, 1.9rem); margin: 0 0 6px; }
+.price-lead { color: var(--ink-2); margin: 0 0 20px; max-width: 46em; }
+.price-photos { display: grid; grid-template-columns: 638fr 340fr; gap: 14px; height: 290px; margin-bottom: 24px; }
+.price-photos img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-lg); }
 /* ---------- прайс (например, морепродукты) ---------- */
 .price-banner { position: relative; border-radius: var(--radius); overflow: hidden; height: 220px; margin-bottom: 28px; border: 1px solid var(--line); }
 .price-banner img { width: 100%; height: 100%; object-fit: cover; }
@@ -394,6 +406,8 @@ h3 { font-size: 1.25rem; }
   .hero-award span { font-size: .56rem; }
   .cards { grid-template-columns: 1fr; }
   .price-cols { grid-template-columns: 1fr; }
+  .price-photos { height: 150px; gap: 8px; }
+  .menu-tab { padding: 11px 16px; font-size: .95rem; }
   .price-banner { height: 160px; }
   .price-banner span { left: 18px; max-width: 80%; }
   .p-card { height: 410px; }
@@ -425,7 +439,7 @@ h3 { font-size: 1.25rem; }
     <a href="#top" class="logo" aria-label="Кракен — на главную"><svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#0B3240" stroke="#4FD1C5" stroke-width="2"/><path d="M11 18a9 9 0 0 1 18 0v4H11Z" fill="#E2533A"/><circle cx="16.5" cy="17" r="2" fill="#fff"/><circle cx="23.5" cy="17" r="2" fill="#fff"/><circle cx="16.8" cy="17.3" r="1" fill="#06202B"/><circle cx="23.8" cy="17.3" r="1" fill="#06202B"/><g fill="none" stroke="#E2533A" stroke-width="2.4" stroke-linecap="round"><path d="M13 22c-2 5 1 8 3 6"/><path d="M18 22c-1 6 2 8 3 5"/><path d="M22 22c1 6-1 8-3 6"/><path d="M27 22c2 5-1 8-3 6"/></g></svg><span class="logo__text">Кракен<small>street food · морепродукты</small></span></a>
     <nav class="nav" id="nav" aria-label="Основная навигация">
       <a href="#cards">Шаурма</a>
-      <a href="#sea">Морепродукты</a>
+      <a href="#cards" data-tab="sea">Морепродукты</a>
       <a href="#choose">Выбрать</a>
       <a href="#extras">Ещё в меню</a>
       <a href="#reviews">Отзывы</a>
@@ -453,7 +467,7 @@ h3 { font-size: 1.25rem; }
       <h1><span class="hl">Вкусно.</span> <span class="hl2">Сочно.</span> По-нашему!</h1>
       <p class="hero__sub">Шаурма, дёнер и закуски из свежих ингредиентов, мясо халяль — а рядом большой выбор морепродуктов. Комсомольская, 46а/1, каждый день с 11:00 до 23:00.</p>
       <div class="hero__buttons">
-        <a href="#cards" class="btn btn--hot">Выбрать шаурму</a>
+        <a href="#cards" class="btn btn--hot">Собрать заказ</a>
         <a href="https://wa.me/79610219996" target="_blank" rel="noopener" class="btn btn--ghost-light">Заказать в WhatsApp</a>
       </div>
       <ul class="hero__facts"><li><b>4,7 ★</b><span>рейтинг в 2ГИС</span></li><li><b>200+</b><span>отзывов гостей</span></li><li><b>от 450 ₽</b><span>за шаурму</span></li></ul>
@@ -487,13 +501,15 @@ h3 { font-size: 1.25rem; }
 
 <section class="section" id="cards">
   <div class="container">
-    <div class="section__head"><p class="hand section__kicker">меню на экране у кассы</p><h2>Шаурма и дёнер</h2>
-      <p class="section__lead"><span class="only-hover">Наведите на карточку</span><span class="only-touch">Нажмите на карточку</span>, чтобы увидеть состав и отзыв гостя.</p></div>
+    <div class="section__head"><p class="hand section__kicker">шаурма и морепродукты</p><h2>Наше меню</h2>
+      <p class="section__lead" id="cardsLead"><span class="only-hover">Наведите на карточку</span><span class="only-touch">Нажмите на карточку</span>, чтобы увидеть состав и отзыв гостя.</p></div>
+<div class="menu-tabs" role="tablist" aria-label="Разделы меню"><button class="menu-tab" type="button" role="tab" data-panel="cardsGrid" aria-selected="true">🌯 Шаурма и дёнер <small>3</small></button><button class="menu-tab" type="button" role="tab" data-panel="sea" aria-selected="false">🦐 Морепродукты <small>15</small></button></div>
     <div class="cards" id="cardsGrid"></div>
+<div class="price-panel" id="sea" hidden><p class="price-slogan">Выбирайте любимые морские деликатесы!</p><p class="price-lead">Рыба, креветки, краб и икра — цены за килограмм или упаковку. Нажмите «+», чтобы добавить в заказ: 1 шт = 1 кг или 1 упаковка.</p><div class="price-photos"><img src="sea-showcase.jpg" alt="" loading="lazy"><img src="sea-crab.jpg" alt="" loading="lazy"></div><div class="price-cols"><div class="price-col"><h3>Рыба и креветки</h3><div class="price-row"><span class="price-row__name">Стейк сёмги</span><span class="price-row__price">1 900 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-0" aria-label="Добавить Стейк сёмги">+</button></div><div class="price-row"><span class="price-row__name">Стейк форели</span><span class="price-row__price">1 700 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-1" aria-label="Добавить Стейк форели">+</button></div><div class="price-row"><span class="price-row__name">Форель целая</span><span class="price-row__price">1 500 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-2" aria-label="Добавить Форель целая">+</button></div><div class="price-row"><span class="price-row__name">Филе тунца</span><span class="price-row__price">600 ₽<small>за 0,5 кг</small></span><button class="add" type="button" data-add="s-3" aria-label="Добавить Филе тунца">+</button></div><div class="price-row"><span class="price-row__name">Филе минтая</span><span class="price-row__price">850 ₽<small>за пачку</small></span><button class="add" type="button" data-add="s-4" aria-label="Добавить Филе минтая">+</button></div><div class="price-row"><span class="price-row__name">Филе кальмара</span><span class="price-row__price">850 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-5" aria-label="Добавить Филе кальмара">+</button></div><div class="price-row"><span class="price-row__name">Креветки тигровые</span><span class="price-row__price">1 750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-6" aria-label="Добавить Креветки тигровые">+</button></div><div class="price-row"><span class="price-row__name">Креветки лангустины</span><span class="price-row__price">1 750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-7" aria-label="Добавить Креветки лангустины">+</button></div></div><div class="price-col"><h3>Морепродукты</h3><div class="price-row"><span class="price-row__name">Креветки королевские</span><span class="price-row__price">850 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-8" aria-label="Добавить Креветки королевские">+</button></div><div class="price-row"><span class="price-row__name">Креветки северные</span><span class="price-row__price">750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-9" aria-label="Добавить Креветки северные">+</button></div><div class="price-row"><span class="price-row__name">Икра форели</span><span class="price-row__price">2 500 ₽<small>за 0,5 кг</small></span><button class="add" type="button" data-add="s-10" aria-label="Добавить Икра форели">+</button></div><div class="price-row"><span class="price-row__name">Мидии в створках</span><span class="price-row__price">750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-11" aria-label="Добавить Мидии в створках">+</button></div><div class="price-row"><span class="price-row__name">Дорадо</span><span class="price-row__price">1 350 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-12" aria-label="Добавить Дорадо">+</button></div><div class="price-row"><span class="price-row__name">Краб камчатский</span><span class="price-row__price">4 700 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-13" aria-label="Добавить Краб камчатский">+</button></div><div class="price-row"><span class="price-row__name">Клешни краба</span><span class="price-row__price">3 700 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-14" aria-label="Добавить Клешни краба">+</button></div></div></div><p class="price-note"><span>Наличие и точный вес уточняйте в WhatsApp или по телефону — взвесим и подтвердим сумму.</span><b>КРАКЕН • Вкус моря рядом</b></p></div>
   </div>
 </section>
 
-<section class="section section--alt" id="sea"><div class="container"><div class="section__head"><p class="hand section__kicker">вкус моря рядом</p><h2>Морепродукты</h2><p class="section__lead">Рыба, креветки, краб и икра — цены за килограмм или упаковку. Нажмите «+», чтобы добавить в заказ: 1 шт = 1 кг или 1 упаковка.</p></div><div class="price-banner"><img src="https://images.unsplash.com/photo-1655697253644-63c270874bb7?w=1400&q=78&auto=format&fit=crop" alt="" loading="lazy"><span>Выбирайте любимые морские деликатесы!</span></div><div class="price-cols"><div class="price-col"><h3>Рыба и креветки</h3><div class="price-row"><span class="price-row__name">Стейк сёмги</span><span class="price-row__price">1 900 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-0" aria-label="Добавить Стейк сёмги">+</button></div><div class="price-row"><span class="price-row__name">Стейк форели</span><span class="price-row__price">1 700 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-1" aria-label="Добавить Стейк форели">+</button></div><div class="price-row"><span class="price-row__name">Форель целая</span><span class="price-row__price">1 500 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-2" aria-label="Добавить Форель целая">+</button></div><div class="price-row"><span class="price-row__name">Филе тунца</span><span class="price-row__price">600 ₽<small>за 0,5 кг</small></span><button class="add" type="button" data-add="s-3" aria-label="Добавить Филе тунца">+</button></div><div class="price-row"><span class="price-row__name">Филе минтая</span><span class="price-row__price">850 ₽<small>за пачку</small></span><button class="add" type="button" data-add="s-4" aria-label="Добавить Филе минтая">+</button></div><div class="price-row"><span class="price-row__name">Филе кальмара</span><span class="price-row__price">850 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-5" aria-label="Добавить Филе кальмара">+</button></div><div class="price-row"><span class="price-row__name">Креветки тигровые</span><span class="price-row__price">1 750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-6" aria-label="Добавить Креветки тигровые">+</button></div><div class="price-row"><span class="price-row__name">Креветки лангустины</span><span class="price-row__price">1 750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-7" aria-label="Добавить Креветки лангустины">+</button></div></div><div class="price-col"><h3>Морепродукты</h3><div class="price-row"><span class="price-row__name">Креветки королевские</span><span class="price-row__price">850 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-8" aria-label="Добавить Креветки королевские">+</button></div><div class="price-row"><span class="price-row__name">Креветки северные</span><span class="price-row__price">750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-9" aria-label="Добавить Креветки северные">+</button></div><div class="price-row"><span class="price-row__name">Икра форели</span><span class="price-row__price">2 500 ₽<small>за 0,5 кг</small></span><button class="add" type="button" data-add="s-10" aria-label="Добавить Икра форели">+</button></div><div class="price-row"><span class="price-row__name">Мидии в створках</span><span class="price-row__price">750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-11" aria-label="Добавить Мидии в створках">+</button></div><div class="price-row"><span class="price-row__name">Дорадо</span><span class="price-row__price">1 350 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-12" aria-label="Добавить Дорадо">+</button></div><div class="price-row"><span class="price-row__name">Краб камчатский</span><span class="price-row__price">4 700 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-13" aria-label="Добавить Краб камчатский">+</button></div><div class="price-row"><span class="price-row__name">Клешни краба</span><span class="price-row__price">3 700 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-14" aria-label="Добавить Клешни краба">+</button></div></div></div><p class="price-note"><span>Наличие и точный вес уточняйте в WhatsApp или по телефону — взвесим и подтвердим сумму.</span><b>КРАКЕН • Вкус моря рядом</b></p></div></section>
+
 <section class="section section--tight">
   <div class="container">
     <div class="scale" id="scale">
@@ -550,7 +566,7 @@ h3 { font-size: 1.25rem; }
     <div class="delivery">
       <article class="card"><div class="card__icon" aria-hidden="true">🛵</div><h3>Заказ</h3><ul class="ticks"><li>Доставка по Норильску — в том числе раков</li><li>Заказ: <a href="tel:+79610219996"><b>+7 961 021-99-96</b></a> или WhatsApp</li><li>Второй номер: <a href="tel:+79134983222">+7 913 498-32-22</a></li><li>Навынос — Комсомольская, 46а/1</li></ul></article>
       <article class="card"><div class="card__icon" aria-hidden="true">💳</div><h3>Оплата</h3><ul class="ticks"><li>Картой</li><li>Наличными</li><li>По QR-коду</li></ul></article>
-      <div class="delivery__cta"><p class="hand">щупальца уже тянутся к заказу</p><a href="#cards" class="btn btn--hot">Выбрать шаурму</a></div>
+      <div class="delivery__cta"><p class="hand">щупальца уже тянутся к заказу</p><a href="#cards" class="btn btn--hot">Собрать заказ</a></div>
     </div>
   </div>
 </section>
@@ -577,7 +593,7 @@ h3 { font-size: 1.25rem; }
   <div class="drawer__head"><h3>Корзина</h3><button class="icon-btn" id="drawerClose" type="button" aria-label="Закрыть корзину">✕</button></div>
   <div class="drawer__body">
     <ul class="cart-list" id="cartList"></ul>
-    <div class="cart-empty" id="cartEmpty"><p class="hand">пока пусто</p><p>Выберите что-нибудь вкусное.</p><a href="#cards" class="btn btn--hot" data-close-drawer>Выбрать шаурму</a></div>
+    <div class="cart-empty" id="cartEmpty"><p class="hand">пока пусто</p><p>Выберите что-нибудь вкусное.</p><a href="#cards" class="btn btn--hot" data-close-drawer>Собрать заказ</a></div>
     <form class="order" id="orderForm" novalidate>
       <h4>Оформление</h4>
       <label>Имя<input name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться"></label>
@@ -645,6 +661,19 @@ window.SITE = {"slug": "kraken", "name": "Кракен", "wa": "79610219996", "p
     card.addEventListener('blur', function () { card.classList.remove('is-flipped'); });
   });
 
+  var tabs = $$('.menu-tab');
+  function showPanel(id) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.panel === id, panel = document.getElementById(t.dataset.panel);
+      t.setAttribute('aria-selected', String(on));
+      panel.hidden = !on;
+      if (on) { panel.classList.remove('panel-in'); void panel.offsetWidth; panel.classList.add('panel-in'); }
+    });
+    $('#cardsLead').hidden = id !== 'cardsGrid';
+  }
+  tabs.forEach(function (t) { t.addEventListener('click', function () { showPanel(t.dataset.panel); }); });
+  $$('a[data-tab]').forEach(function (a) { a.addEventListener('click', function () { showPanel(a.dataset.tab); }); });
+
   $('#scaleMarkers').innerHTML = S.scale.map(function (m, i) {
     return '<span class="scale__marker' + (i % 2 ? ' scale__marker--up' : '') + '" style="left:' + m[1] + '%;transition-delay:' + (0.25 + m[1] / 50).toFixed(2) + 's">' + esc(m[0]) + '</span>';
   }).join('');
@@ -684,6 +713,7 @@ window.SITE = {"slug": "kraken", "name": "Кракен", "wa": "79610219996", "p
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-show]');
     if (!b) return;
+    if (tabs.length) showPanel('cardsGrid');
     var wrap = $('#card-' + b.dataset.show), r = wrap.getBoundingClientRect();
     window.scrollTo({ top: Math.max(0, r.top + window.scrollY - (window.innerHeight - r.height) / 2), behavior: 'smooth' });
     wrap.classList.add('is-highlight');
