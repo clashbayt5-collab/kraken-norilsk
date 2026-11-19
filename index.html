@@ -192,6 +192,8 @@ h3 { font-size: 1.25rem; }
 .menu-tab small { opacity: .7; font-weight: 700; }
 .menu-tab[aria-selected="true"] { background: var(--hot); border-color: var(--hot); color: var(--on-hot); box-shadow: 0 4px 0 var(--hot-dark); }
 .panel-in { animation: hintIn .45s ease both; }
+.price-panel .extras { align-items: start; }
+.price-panel .extras__list { margin-top: 14px; }
 .price-slogan { font-family: var(--font-head); font-size: clamp(1.3rem, 2.6vw, 1.9rem); margin: 0 0 6px; }
 .price-lead { color: var(--ink-2); margin: 0 0 20px; max-width: 46em; }
 .price-photos { display: grid; grid-template-columns: 638fr 340fr; gap: 14px; height: 290px; margin-bottom: 24px; }
@@ -407,7 +409,8 @@ h3 { font-size: 1.25rem; }
   .cards { grid-template-columns: 1fr; }
   .price-cols { grid-template-columns: 1fr; }
   .price-photos { height: 150px; gap: 8px; }
-  .menu-tab { padding: 11px 16px; font-size: .95rem; }
+  .menu-tabs { flex-wrap: nowrap; overflow-x: auto; margin: -14px -16px 26px; padding: 0 16px 8px; scrollbar-width: none; }
+  .menu-tab { flex: none; padding: 10px 15px; font-size: .92rem; }
   .price-banner { height: 160px; }
   .price-banner span { left: 18px; max-width: 80%; }
   .p-card { height: 410px; }
@@ -441,7 +444,7 @@ h3 { font-size: 1.25rem; }
       <a href="#cards">Шаурма</a>
       <a href="#cards" data-tab="sea">Морепродукты</a>
       <a href="#choose">Выбрать</a>
-      <a href="#extras">Ещё в меню</a>
+      <a href="#cards" data-tab="snacks">Закуски</a>
       <a href="#reviews">Отзывы</a>
       <a href="#delivery">Доставка</a>
       <a href="#contacts">Контакты</a>
@@ -503,9 +506,10 @@ h3 { font-size: 1.25rem; }
   <div class="container">
     <div class="section__head"><p class="hand section__kicker">шаурма и морепродукты</p><h2>Наше меню</h2>
       <p class="section__lead" id="cardsLead"><span class="only-hover">Наведите на карточку</span><span class="only-touch">Нажмите на карточку</span>, чтобы увидеть состав и отзыв гостя.</p></div>
-<div class="menu-tabs" role="tablist" aria-label="Разделы меню"><button class="menu-tab" type="button" role="tab" data-panel="cardsGrid" aria-selected="true">🌯 Шаурма и дёнер <small>3</small></button><button class="menu-tab" type="button" role="tab" data-panel="sea" aria-selected="false">🦐 Морепродукты <small>15</small></button></div>
+<div class="menu-tabs" role="tablist" aria-label="Разделы меню"><button class="menu-tab" type="button" role="tab" data-panel="cardsGrid" aria-selected="true">🌯 Шаурма и дёнер <small>3</small></button><button class="menu-tab" type="button" role="tab" data-panel="sea" aria-selected="false">🦐 Морепродукты <small>15</small></button><button class="menu-tab" type="button" role="tab" data-panel="snacks" aria-selected="false">🍟 Закуски <small>5</small></button></div>
     <div class="cards" id="cardsGrid"></div>
 <div class="price-panel" id="sea" hidden><p class="price-slogan">Выбирайте любимые морские деликатесы!</p><p class="price-lead">Рыба, креветки, краб и икра — цены за килограмм или упаковку. Нажмите «+», чтобы добавить в заказ: 1 шт = 1 кг или 1 упаковка.</p><div class="price-photos"><img src="sea-showcase.jpg" alt="" loading="lazy"><img src="sea-crab.jpg" alt="" loading="lazy"></div><div class="price-cols"><div class="price-col"><h3>Рыба и креветки</h3><div class="price-row"><span class="price-row__name">Стейк сёмги</span><span class="price-row__price">1 900 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-0" aria-label="Добавить Стейк сёмги">+</button></div><div class="price-row"><span class="price-row__name">Стейк форели</span><span class="price-row__price">1 700 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-1" aria-label="Добавить Стейк форели">+</button></div><div class="price-row"><span class="price-row__name">Форель целая</span><span class="price-row__price">1 500 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-2" aria-label="Добавить Форель целая">+</button></div><div class="price-row"><span class="price-row__name">Филе тунца</span><span class="price-row__price">600 ₽<small>за 0,5 кг</small></span><button class="add" type="button" data-add="s-3" aria-label="Добавить Филе тунца">+</button></div><div class="price-row"><span class="price-row__name">Филе минтая</span><span class="price-row__price">850 ₽<small>за пачку</small></span><button class="add" type="button" data-add="s-4" aria-label="Добавить Филе минтая">+</button></div><div class="price-row"><span class="price-row__name">Филе кальмара</span><span class="price-row__price">850 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-5" aria-label="Добавить Филе кальмара">+</button></div><div class="price-row"><span class="price-row__name">Креветки тигровые</span><span class="price-row__price">1 750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-6" aria-label="Добавить Креветки тигровые">+</button></div><div class="price-row"><span class="price-row__name">Креветки лангустины</span><span class="price-row__price">1 750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-7" aria-label="Добавить Креветки лангустины">+</button></div></div><div class="price-col"><h3>Морепродукты</h3><div class="price-row"><span class="price-row__name">Креветки королевские</span><span class="price-row__price">850 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-8" aria-label="Добавить Креветки королевские">+</button></div><div class="price-row"><span class="price-row__name">Креветки северные</span><span class="price-row__price">750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-9" aria-label="Добавить Креветки северные">+</button></div><div class="price-row"><span class="price-row__name">Икра форели</span><span class="price-row__price">2 500 ₽<small>за 0,5 кг</small></span><button class="add" type="button" data-add="s-10" aria-label="Добавить Икра форели">+</button></div><div class="price-row"><span class="price-row__name">Мидии в створках</span><span class="price-row__price">750 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-11" aria-label="Добавить Мидии в створках">+</button></div><div class="price-row"><span class="price-row__name">Дорадо</span><span class="price-row__price">1 350 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-12" aria-label="Добавить Дорадо">+</button></div><div class="price-row"><span class="price-row__name">Краб камчатский</span><span class="price-row__price">4 700 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-13" aria-label="Добавить Краб камчатский">+</button></div><div class="price-row"><span class="price-row__name">Клешни краба</span><span class="price-row__price">3 700 ₽<small>за кг</small></span><button class="add" type="button" data-add="s-14" aria-label="Добавить Клешни краба">+</button></div></div></div><p class="price-note"><span>Наличие и точный вес уточняйте в WhatsApp или по телефону — взвесим и подтвердим сумму.</span><b>КРАКЕН • Вкус моря рядом</b></p></div>
+<div class="price-panel" id="snacks" hidden><div class="extras"><div class="extras__photo"><img src="https://images.unsplash.com/photo-1652957392622-17e7c96f1369?w=900&q=78&auto=format&fit=crop" alt="" loading="lazy"></div><div><p class="hand section__kicker">к шаурме</p><h2>Закуски и добавки</h2><div class="extras__list" id="extrasList"></div><p class="section__lead" style="margin:0 0 20px">Раки — с доставкой, цену и наличие уточняйте в WhatsApp или по телефону.</p><div class="hero__buttons"><a class="btn btn--wa" href="https://wa.me/79610219996" target="_blank" rel="noopener">Спросить в WhatsApp</a><a class="btn btn--ghost" href="tel:+79610219996">Позвонить</a></div></div></div></div>
   </div>
 </section>
 
@@ -532,17 +536,7 @@ h3 { font-size: 1.25rem; }
   </div>
 </section>
 
-<section class="section section--alt" id="extras">
-  <div class="container extras">
-    <div class="extras__photo"><img src="https://images.unsplash.com/photo-1652957392622-17e7c96f1369?w=900&q=78&auto=format&fit=crop" alt="" loading="lazy"></div>
-    <div>
-      <p class="hand section__kicker">к шаурме</p><h2>Закуски и добавки</h2>
-      <div class="extras__list" id="extrasList"></div>
-      <p class="section__lead" style="margin:0 0 20px">Раки — с доставкой, цену и наличие уточняйте в WhatsApp или по телефону.</p>
-      <div class="hero__buttons"><a class="btn btn--wa" href="https://wa.me/79610219996" target="_blank" rel="noopener">Спросить в WhatsApp</a><a class="btn btn--ghost" href="tel:+79610219996">Позвонить</a></div>
-    </div>
-  </div>
-</section>
+
 
 <section class="section section--dark">
   <div class="container">
@@ -666,6 +660,7 @@ window.SITE = {"slug": "kraken", "name": "Кракен", "wa": "79610219996", "p
     tabs.forEach(function (t) {
       var on = t.dataset.panel === id, panel = document.getElementById(t.dataset.panel);
       t.setAttribute('aria-selected', String(on));
+      if (on) t.parentNode.scrollTo({ left: t.offsetLeft - t.parentNode.offsetLeft - 16, behavior: 'smooth' }); // на телефоне выбранная вкладка всегда видна
       panel.hidden = !on;
       if (on) { panel.classList.remove('panel-in'); void panel.offsetWidth; panel.classList.add('panel-in'); }
     });
