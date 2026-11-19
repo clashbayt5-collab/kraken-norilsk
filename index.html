@@ -443,7 +443,6 @@ h3 { font-size: 1.25rem; }
     <nav class="nav" id="nav" aria-label="Основная навигация">
       <a href="#cards">Шаурма</a>
       <a href="#cards" data-tab="sea">Морепродукты</a>
-      <a href="#choose">Выбрать</a>
       <a href="#cards" data-tab="snacks">Закуски</a>
       <a href="#reviews">Отзывы</a>
       <a href="#delivery">Доставка</a>
@@ -523,18 +522,7 @@ h3 { font-size: 1.25rem; }
   </div>
 </section>
 
-<section class="section section--dark" id="choose">
-  <div class="container">
-    <div class="section__head"><p class="hand section__kicker">подскажем</p><h2>Что берём сегодня?</h2><p class="section__lead">Выберите настроение — подскажем, что взять.</p></div>
-    <div class="choose">
-      <div class="choose__options" id="chooseOpts" role="tablist"></div>
-      <div class="choose__hint" role="tabpanel" aria-live="polite">
-        <img id="hintImg" src="https://images.unsplash.com/photo-1719282431723-9d0f4370d4bc?w=1000&q=80&auto=format" alt="">
-        <div class="choose__body" id="hintBody"><div class="choose__empty"><span class="hand">← выберите вариант</span><p>Подберём шаурму под аппетит.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 
 
@@ -673,7 +661,7 @@ window.SITE = {"slug": "kraken", "name": "Кракен", "wa": "79610219996", "p
     return '<span class="scale__marker' + (i % 2 ? ' scale__marker--up' : '') + '" style="left:' + m[1] + '%;transition-delay:' + (0.25 + m[1] / 50).toFixed(2) + 's">' + esc(m[0]) + '</span>';
   }).join('');
 
-  $('#chooseOpts').innerHTML = S.moods.map(function (m, i) {
+  if ($('#chooseOpts')) $('#chooseOpts').innerHTML = S.moods.map(function (m, i) {
     return '<button class="choose__opt" role="tab" type="button" data-mood="' + i + '" aria-selected="false"><span class="emoji">' + m.emoji + '</span><span><b>' + esc(m.title) + '</b><small>' + esc(m.sub) + '</small></span></button>';
   }).join('');
 
